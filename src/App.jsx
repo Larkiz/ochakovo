@@ -9,11 +9,7 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
-<<<<<<< HEAD
           <Route path="/sim" element={<SimHome />} />
-=======
-          <Route path="/" element={<SimHome />} />
->>>>>>> 84797a53f4bee79895211c97d55c90cb517ddecb
         </Routes>
       </BrowserRouter>
     </Box>
