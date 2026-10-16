@@ -9,7 +9,7 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path="/" element={<SimHome />} />
+          <Route path="/sim" element={<SimHome />} />
         </Routes>
       </BrowserRouter>
     </Box>

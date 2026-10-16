@@ -30,6 +30,17 @@ export const Header = () => {
         <LinkButton>Симулятор</LinkButton>
         <LinkButton>Рецепты</LinkButton>
       </Stack>
+      <Typography
+        sx={{
+          color: colors.redBg,
+          fontFamily: "Jost",
+          fontWeight: 600,
+          fontSize: 24,
+          opacity: 0,
+        }}
+      >
+        ОЧАКОВО смена
+      </Typography>
     </Stack>
   );
 };
