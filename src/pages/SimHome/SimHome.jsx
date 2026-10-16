@@ -42,15 +42,37 @@ export const SimHome = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
+
+<Box 
+        sx={{ 
+          display: 'flex', 
+          justifyContent: 'center', 
+          alignItems: 'center', 
+          width: '100%',
+          p: 1
+        }}
+      >
+
+      <Typography
+variant="h4"
+component="h1"
+sx={{ fontWeight: '800', mb: 5, fontFamily: 'Jost' }}
+>
+Что будем варить ?
+</Typography >
+
+</Box>
+
       <Box 
         sx={{ 
           display: 'flex', 
           justifyContent: 'center', 
           alignItems: 'center', 
           width: '100%',
-          p: 2
         }}
       >
+
+
         <Grid 
           container 
           spacing={3} 
@@ -101,7 +123,8 @@ export const SimHome = () => {
                           fontWeight: '800',
                           whiteSpace: 'pre-line',
                           lineHeight: 1.2,
-                          fontSize: '1.15rem'
+                          fontSize: '1.15rem',
+                          fontFamily: 'Jost'
                         }}
                       >
                         {item.title}
@@ -114,7 +137,8 @@ export const SimHome = () => {
                         sx={{
                           fontWeight: '700',
                           color: '#000000',
-                          fontSize: '0.85rem'
+                          fontSize: '0.85rem',
+                          fontFamily: 'Jost'
                         }}
                       >
                         {item.subtitle}
