@@ -30,6 +30,7 @@ export const Header = () => {
         <LinkButton>Симулятор</LinkButton>
         <LinkButton>Рецепты</LinkButton>
       </Stack>
+<<<<<<< HEAD
       <Typography
         sx={{
           color: colors.redBg,
@@ -41,6 +42,8 @@ export const Header = () => {
       >
         ОЧАКОВО смена
       </Typography>
+=======
+>>>>>>> 84797a53f4bee79895211c97d55c90cb517ddecb
     </Stack>
   );
 };
