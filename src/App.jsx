@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router";
-import { SimHome } from "./pages/SimHome/SimHome";
-import { Header } from "./widgets/Header/Header";
 import { Box } from "@mui/material";
+import { SimHome } from "@/pages/SimHome/SimHome";
+import { Header } from "@/widgets/Header/Header";
 
 function App() {
   return (

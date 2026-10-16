@@ -1,22 +1,7 @@
-import { Button, Stack, Typography } from "@mui/material";
-import { Link } from "react-router";
-import { colors } from "../../shared/colors";
-export const LinkButton = ({ children }) => {
-  return (
-    <Button
-      sx={{
-        backgroundColor: colors.buttonBg,
-        color: colors.buttonText,
-        fontWeight: 550,
-        pl: 3,
-        pr: 3,
-      }}
-      LinkComponent={Link}
-    >
-      {children}
-    </Button>
-  );
-};
+import { colors } from "@/shared/colors";
+import { LinkButton } from "@/ui/LinkButton";
+import { Stack, Typography } from "@mui/material";
+
 export const Header = () => {
   return (
     <Stack direction={"row"} sx={{ width: "100%", alignItems: "center" }}>
