@@ -2,7 +2,7 @@ import { colors } from "@/shared/colors";
 import { Button } from "@mui/material";
 import { Link } from "react-router";
 
-export const LinkButton = ({ children }) => {
+export const LinkButton = ({ children, to = "/" }) => {
   return (
     <Button
       sx={{
@@ -13,6 +13,7 @@ export const LinkButton = ({ children }) => {
         pr: 3,
       }}
       LinkComponent={Link}
+      to={to}
     >
       {children}
     </Button>

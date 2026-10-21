@@ -27,8 +27,8 @@ export const Header = () => {
         direction={"row"}
       >
         <LinkButton>Главная</LinkButton>
-        <LinkButton>Симулятор</LinkButton>
-        <LinkButton>Рецепты</LinkButton>
+        <LinkButton to="simulator">Симулятор</LinkButton>
+        <LinkButton to="recipes">Рецепты</LinkButton>
       </Stack>
       <Typography
         sx={{
