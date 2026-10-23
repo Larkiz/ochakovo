@@ -22,7 +22,9 @@ function App() {
           <Header />
           <Routes>
             <Route path="/" element={<Index />} />
-            <Route path="/sim" element={<SimHome />} />
+            <Route path="/brew" element={<SimHome />} />
+            <Route path="/conveyor" element={<SimHome />} />
+            <Route path="/quiz" element={<SimHome />} />
           </Routes>
         </BrowserRouter>
       </Box>
