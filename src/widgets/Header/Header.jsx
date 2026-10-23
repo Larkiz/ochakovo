@@ -1,17 +1,29 @@
 import { colors } from "@/shared/colors";
 import { LinkButton } from "@/ui/LinkButton";
 import { Stack, Typography } from "@mui/material";
+import { Link } from "react-router";
 
 export const Header = () => {
   return (
-    <Stack direction={"row"} sx={{ width: "100%", alignItems: "center" }}>
+    <Stack
+      direction={"row"}
+      sx={{
+        maxWidth: 1440,
+        alignItems: "center",
+        pb: 2,
+        margin: "auto",
+      }}
+    >
       <Typography
         sx={{
           color: colors.redBg,
           fontFamily: "Jost",
           fontWeight: 600,
           fontSize: 24,
+          textDecoration: "none",
         }}
+        component={Link}
+        to="/"
       >
         ОЧАКОВО смена
       </Typography>
@@ -27,8 +39,8 @@ export const Header = () => {
         direction={"row"}
       >
         <LinkButton>Главная</LinkButton>
-        <LinkButton to="simulator">Симулятор</LinkButton>
-        <LinkButton to="recipes">Рецепты</LinkButton>
+        <LinkButton to="simulator">История</LinkButton>
+        <LinkButton to="recipes">Вакансии</LinkButton>
       </Stack>
       <Typography
         sx={{
