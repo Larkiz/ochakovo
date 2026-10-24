@@ -25,7 +25,7 @@ import HourglassEmptyIcon from "@mui/icons-material/HourglassEmpty";
 
 
 // Базовый URL бэкенда (из .env или относительный путь)
-const API_BASE_URL = import.meta.env.VITE_API_URL || "/api";
+const API_BASE_URL = "https://localhost:7076/api";
 
 
 export function HRPanel() {
@@ -39,7 +39,7 @@ export function HRPanel() {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch(`${API_BASE_URL}/candidates`);
+      const response = await fetch(`${API_BASE_URL}/Candidates`);
       if (!response.ok) {
         throw new Error(`Ошибка сервера: ${response.status}`);
       }

@@ -17,8 +17,7 @@ import {
   Stack
 } from '@mui/material';
 
-export function TestQues() {
-  // 1. Локальный стейт формы
+export default function ApplicationForm() {
   const [formData, setFormData] = useState({
     fullName: '',
     gender: 'male',
@@ -30,13 +29,11 @@ export function TestQues() {
     readinessStatus: ''
   });
 
-  // 2. Обработчик изменений полей
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // 3. Отправка JSON в базу данных
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -86,16 +83,14 @@ export function TestQues() {
       }
     } catch (error) {
       console.error('Сетевая ошибка:', error);
-      alert('Не удалось подключиться к серверу API.');
+      alert('Не удалось подключиться к серверу API. Проверьте настройки CORS на бэкенде.');
     }
   };
 
-  // 4. Отрендеренный интерфейс
   return (
     <Box sx={{ bgcolor: '#fdfdfd', py: 6, display: 'flex', justifyContent: 'center' }}>
       <Container maxWidth="sm">
         
-        {/* Шапка */}
         <Box sx={{ textAlign: 'center', mb: 4 }}>
           <Typography variant="h4" sx={{ fontWeight: 800, color: '#212121', textTransform: 'uppercase', mb: 1 }}>
             Заполни <span style={{ color: '#E30613' }}>анкету</span>
@@ -105,7 +100,6 @@ export function TestQues() {
           </Typography>
         </Box>
 
-        {/* Форма на серой подложке */}
         <Paper 
           elevation={0} 
           component="form" 
@@ -144,10 +138,11 @@ export function TestQues() {
               required
               fullWidth
               name="birthDate"
+              label="Дата рождения"
               type="date"
               value={formData.birthDate}
               onChange={handleChange}
-              InputLabelProps={{ shrink: true }}
+              slotProps={{ inputLabel: { shrink: true } }} // Исправлено для предотвращения предупреждений React
               sx={{ bgcolor: '#fff', borderRadius: 1 }}
             />
 
