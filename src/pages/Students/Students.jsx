@@ -126,9 +126,7 @@ export const StudentPage = () => {
         <Stack
           direction={{ xs: "column", sm: "row" }}
           spacing={2}
-          justifyContent="center"
-          alignItems="stretch"
-          sx={{ mb: 5 }}
+          sx={{ mb: 5, justifyContent: "center", alignItems: "stretch" }}
         >
           <Button
             variant={tab === "paid" ? "contained" : "outlined"}
@@ -206,11 +204,7 @@ export const StudentPage = () => {
                       size="small"
                       sx={{ fontWeight: 800, mb: 2 }}
                     />
-                    <Typography
-                      variant="body2"
-                      color="text.secondary"
-                      paragraph
-                    >
+                    <Typography variant="body2" color="text.secondary">
                       {item.details}
                     </Typography>
                     <Typography
@@ -242,7 +236,7 @@ export const StudentPage = () => {
             <Typography variant="h5" fontWeight={800} gutterBottom>
               Проекты и задания для бесплатной практики
             </Typography>
-            <Typography color="text.secondary" paragraph>
+            <Typography color="text.secondary">
               Вы можете пройти практику по индивидуальной договоренности и
               получить реальные кейсы в портфолио:
             </Typography>
@@ -256,7 +250,11 @@ export const StudentPage = () => {
                 "Разработка макетов выкладки продукции в маркетинге",
               ].map((task, i) => (
                 <Grid size={{ xs: 12, sm: 6 }} key={i}>
-                  <Stack direction="row" spacing={1.5} alignItems="center">
+                  <Stack
+                    sx={{ alignItems: "center" }}
+                    direction="row"
+                    spacing={1.5}
+                  >
                     <Box
                       component="span"
                       sx={{ color: "#E30613", fontWeight: "bold", mr: 1 }}
@@ -278,8 +276,10 @@ export const StudentPage = () => {
           <Typography
             variant="h4"
             fontWeight={900}
-            textAlign="center"
-            sx={{ mb: 4, fontSize: { xs: "1.5rem", sm: "2.125rem" } }}
+            sx={{
+              mb: 4,
+              fontSize: { xs: "1.5rem", sm: "2.125rem", textAlign: "center" },
+            }}
           >
             Часто задаваемые вопросы (FAQ)
           </Typography>
@@ -318,7 +318,7 @@ export const StudentPage = () => {
             color: "#FFF",
           }}
         >
-          <Grid container spacing={4} alignItems="center">
+          <Grid container sx={{ alignItems: "center" }} spacing={4}>
             <Grid size={{ xs: 12, md: 6 }}>
               <Typography variant="h5" fontWeight={800} gutterBottom>
                 Остались вопросы? Свяжись с нами!
@@ -328,14 +328,22 @@ export const StudentPage = () => {
                 документов и заселением.
               </Typography>
               <Stack spacing={1.5}>
-                <Stack direction="row" spacing={1} alignItems="center">
+                <Stack
+                  direction="row"
+                  sx={{ alignItems: "center" }}
+                  spacing={1}
+                >
                   <PhoneIcon color="error" />
                   <Typography variant="body2">
                     Отдел подбора: 8 (800) 100-77-77 (доб. 1155) / +7 (903)
                     591-00-13
                   </Typography>
                 </Stack>
-                <Stack direction="row" spacing={1} alignItems="center">
+                <Stack
+                  sx={{ alignItems: "center" }}
+                  direction="row"
+                  spacing={1}
+                >
                   <HomeIcon color="error" />
                   <Typography variant="body2">
                     Комендант общежития: 8 (495) 446-42-55

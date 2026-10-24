@@ -269,6 +269,7 @@ export function Index() {
                         }}
                         component={Link}
                         to={dept.path}
+                        nativeButton={false}
                       >
                         Хочу попробовать!
                       </Button>
@@ -276,9 +277,9 @@ export function Index() {
                   }
                   arrow
                   placement="top"
-                  TransitionComponent={Zoom}
+                  slots={{ transition: Zoom }}
                   open={isHovered}
-                  componentsProps={{
+                  slotProps={{
                     tooltip: {
                       sx: {
                         bgcolor: "#1E293B",

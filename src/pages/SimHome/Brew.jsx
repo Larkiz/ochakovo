@@ -167,7 +167,7 @@ export function Brew() {
   const inTargetRange = temperature >= 70 && temperature <= 90;
 
   return (
-    <Box maxWidth="md" sx={{ mt: 5, mb: 5 }}>
+    <Box sx={{ mt: 5, mb: 5 }}>
       <Paper
         elevation={4}
         sx={{
@@ -306,9 +306,8 @@ export function Brew() {
         )}
 
         {gameState === "playing" && (
-          <Grid container spacing={4} alignItems="stretch">
+          <Grid container spacing={4} sx={{ alignItems: "stretch" }}>
             <Grid
-              item
               xs={12}
               md={6}
               sx={{
@@ -360,7 +359,6 @@ export function Brew() {
             </Grid>
 
             <Grid
-              item
               xs={12}
               md={6}
               sx={{

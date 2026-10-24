@@ -97,6 +97,7 @@ export const Header = () => {
               whiteSpace: "nowrap",
             }}
             component={Link}
+            nativeButton={false}
           >
             Для HR
           </Button>
@@ -144,6 +145,7 @@ export const Header = () => {
             mb: 3,
           }}
           component={Link}
+          nativeButton={false}
           onClick={() => setMobileOpen(false)}
         >
           Для HR
