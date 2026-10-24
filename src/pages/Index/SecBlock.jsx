@@ -151,11 +151,7 @@ const gameCards = [
     roleOrReward: "Роль: Химик-технолог",
     buttonText: "Запустить симулятор",
     icon: BrewKvasIcon,
-<<<<<<< HEAD
-    path: "./Brew",
-=======
     path: "/brew",
->>>>>>> c12700f285c6a533398e821e588943b3d503f683
   },
   {
     id: "conveyor",

@@ -1,7 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router";
 import { Box } from "@mui/material";
-import { SimHome } from "@/pages/SimHome/SimHome";
-import { Brew} from "@/pages/SimHome/Brew";
+import { Brew } from "@/pages/SimHome/Brew";
 
 import { Header } from "@/widgets/Header/Header";
 import { Index } from "@/pages/Index/Index";
@@ -27,7 +26,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/brew" element={<Brew />} />
-            <Route path="/conveyor" element={<Conveyor/>} />
+            <Route path="/conveyor" element={<Conveyor />} />
             <Route path="/quiz" element={<Quiz />} />
           </Routes>
         </BrowserRouter>

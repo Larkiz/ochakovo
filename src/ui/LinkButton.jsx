@@ -5,7 +5,7 @@ export const LinkButton = ({ children, to = "/" }) => {
   return (
     <Button
       sx={{
-        color: "#fefefe",
+        color: { xs: "#E30613", md: "#fff" },
         fontWeight: 600,
         pl: 3,
         pr: 3,
