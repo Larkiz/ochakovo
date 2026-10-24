@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
-  Container,
   Box,
   Typography,
   Button,
@@ -10,7 +9,6 @@ import {
   Grid,
 } from "@mui/material";
 import { styled, keyframes } from "@mui/material/styles";
-import ReplayIcon from "@mui/icons-material/Replay";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 
 // Анимация покачивания жидкости в чане
