@@ -17,7 +17,7 @@ import {
   Stack
 } from '@mui/material';
 
-export default function ApplicationForm() {
+export function TestQues() {
   const [formData, setFormData] = useState({
     fullName: '',
     gender: 'male',
