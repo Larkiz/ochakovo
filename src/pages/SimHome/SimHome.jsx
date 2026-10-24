@@ -1,26 +1,27 @@
 import React from 'react';
-import { 
-  Box, 
-  Grid, 
-  Card, 
-  CardContent, 
-  CardActionArea, 
-  Typography, 
-  Container 
+import { useNavigate } from 'react-router';
+import {
+  Box,
+  Grid,
+  Card,
+  CardContent,
+  CardActionArea,
+  Typography,
+  Container,
+  Button
 } from '@mui/material';
-import { BottlingShopIcon } from "@/pages/Index/ui/BottlingShopIcon";
-import { TechWorkshopIcon } from "@/pages/Index/ui/TechWorkshopIcon";
-import { LaboratoryIcon } from "@/pages/Index/ui/LaboratoryIcon";
+
 
 const cardsData = [
   {
-    id: 'lad',
+    id: 'lab',
     category: 'Лаборатория вкуса',
-    title: 'R&D ОТДЕЛ РАЗРАБОТКИ"',
+    title: 'R&D ОТДЕЛ РАЗРАБОТКИ',
     description: 'Спроектируйте уникальный сигнатурный напиток.',
     footerText: 'Роль: Лаборант',
     isFooterBold: true,
-    icon: LaboratoryIcon, 
+    path: '/Lab', // Роут на конструктор напитка из App.jsx
+    image: '/image (1) 3.png', // Лаборатория с танками
   },
   {
     id: 'conveyor',
@@ -29,7 +30,8 @@ const cardsData = [
     description: 'Настрой скорость линии розлива, откалибруй датчики и устрани сбой в работе роботов-упаковщиков.',
     footerText: 'Роль: Инженер-наладчик',
     isFooterBold: false,
-    icon: BottlingShopIcon,
+    path: '/conveyor', // Роут на сортировку бутылок
+    image: '/image (1) 1.png', // Цех с трубами
   },
   {
     id: 'brew',
@@ -38,141 +40,270 @@ const cardsData = [
     description: 'Скомпонуй идеальные натуральные ингредиенты, выдержи температурный режим и создай рецепт кваса.',
     footerText: 'Роль: Химик-технолог',
     isFooterBold: false,
-    icon: TechWorkshopIcon,
+    path: '/brew', // Роут на варку кваса с температурой
+    image: '/image (1) 2.png', // Технологический корпус Очаково
   }
 ];
 
+
 export function SimHome() {
-  
-  const handleCardClick = (cardId) => {
-    console.log(`Кликнули по карточке: ${cardId}`);
-  };
+  const navigate = useNavigate();
+
 
   return (
-    <Box sx={{ bgcolor: '#fdfdfd', py: 6, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+    <Box
+      sx={{
+        minHeight: '100vh',
+        py: { xs: 4, md: 7 },
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        // Инженерная миллиметровая сетка
+        backgroundImage: `
+          linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px)
+        `,
+        backgroundSize: '24px 24px',
+      }}
+    >
       <Container maxWidth="lg" sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        
+       
         {/* Заголовок секции по центру */}
         <Box sx={{ textAlign: 'center', mb: 6 }}>
-          <Typography 
-            variant="h4" 
-            component="h2" 
-            sx={{ 
-              fontWeight: 800, 
-              color: '#212121', 
-              textTransform: 'uppercase', 
-              mb: 1 
+          <Typography
+            variant="h4"
+            component="h2"
+            sx={{
+              fontWeight: 900,
+              color: '#18181B',
+              textTransform: 'uppercase',
+              fontSize: { xs: '24px', sm: '32px', md: '40px' },
+              lineHeight: 1.15,
+              letterSpacing: '-0.5px',
+              mb: 1.5
             }}
           >
             НЕ ПРОСТО <span style={{ color: '#E30613' }}>КВАС</span>.<br />
             ТВОЙ КАРЬЕРНЫЙ СТАРТ В ОЧАКОВО
           </Typography>
-          <Typography variant="body1" sx={{ color: '#666', maxWidth: 600, mx: 'auto', mt: 2 }}>
+          <Typography
+            variant="body1"
+            sx={{
+              color: '#52525B',
+              maxWidth: 620,
+              mx: 'auto',
+              fontSize: { xs: '14px', md: '15px' },
+              lineHeight: 1.6
+            }}
+          >
             Современное производство и технологии! Пройди мини-игры, набери баллы за точность и скорость, и получи прямой оффер на стажировку или фирменный мерч.
           </Typography>
         </Box>
 
-        {/* Сетка с карточками, центрированная по горизонтали */}
-        <Grid 
-          container 
-          spacing={4} 
-          justifyContent="center" 
+
+        {/* Сетка с 3 карточками */}
+        <Grid
+          container
+          spacing={3.5}
+          justifyContent="center"
           alignItems="stretch"
-          sx={{ maxWidth: '100%', mx: 'auto' }}
+          sx={{ maxWidth: '100%', mx: 'auto', mb: 8 }}
         >
           {cardsData.map((card) => (
-            <Grid 
-              item 
-              xs={12} 
-              sm={6} 
-              md={4} 
-              key={card.id} 
-              sx={{ display: 'flex', justifyContent: 'center' }} // Центрирует саму карточку внутри своей колонки
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={4}
+              key={card.id}
+              sx={{ display: 'flex', justifyContent: 'center' }}
             >
-              <Card 
+              <Card
                 elevation={0}
-                sx={{ 
+                sx={{
                   width: '100%',
-                  maxWidth: 360, // Ограничение максимальной ширины карточки для красивого баланса по центру
-                  borderRadius: 4, 
-                  bgcolor: '#f5f5f5', 
-                  transition: 'transform 0.2s, boxShadow 0.2s',
+                  maxWidth: 360,
+                  borderRadius: '24px',
+                  bgcolor: '#F4F4F5',
+                  border: '1.5px solid #E4E4E7',
+                  position: 'relative',
+                  overflow: 'hidden',
+                  transition: 'all 0.25s ease',
                   '&:hover': {
-                    transform: 'translateY(-4px)',
-                    boxShadow: '0 8px 24px rgba(0,0,0,0.06)'
+                    bgcolor: '#FFFFFF',
+                    borderColor: '#E30613',
+                    transform: 'translateY(-6px)',
+                    boxShadow: '0 16px 32px rgba(227, 6, 19, 0.08)'
                   }
                 }}
               >
-                <CardActionArea 
-                  onClick={() => handleCardClick(card.id)}
-                  sx={{ 
-                    height: '100%', 
-                    display: 'flex', 
-                    flexDirection: 'column', 
+                <CardActionArea
+                  onClick={() => navigate(card.path)}
+                  sx={{
+                    height: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
                     alignItems: 'stretch',
                     justifyContent: 'flex-start',
                     p: 3
                   }}
                 >
-                  {/* Контейнер для изображения */}
-                  <Box 
-                    sx={{ 
-                      height: 120, 
-                      display: 'flex', 
-                      alignItems: 'center', 
-                      justifyContent: 'center',
-                      mb: 2
+                  {/* Иконка пальца/клика из Фигмы */}
+                  <Box
+                    sx={{
+                      position: 'absolute',
+                      top: 16,
+                      right: 16,
+                      fontSize: '18px',
+                      opacity: 0.5,
+                      userSelect: 'none',
                     }}
                   >
-                    <img 
-                      src={card.image} 
-                      alt={card.title} 
-                      style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain' }} 
+                    👆
+                  </Box>
+
+
+                  {/* Контейнер для картинки здания */}
+                  <Box
+                    sx={{
+                      height: 130,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      mb: 2.5
+                    }}
+                  >
+                    <Box
+                      component="img"
+                      src={card.image}
+                      alt={card.title}
+                      sx={{
+                        maxHeight: '100%',
+                        maxWidth: '100%',
+                        objectFit: 'contain',
+                        imageRendering: 'pixelated',
+                        filter: 'drop-shadow(0 6px 12px rgba(0,0,0,0.12))',
+                        transition: 'transform 0.25s ease',
+                        '.MuiCardActionArea-root:hover &': {
+                          transform: 'scale(1.06)',
+                        }
+                      }}
                     />
                   </Box>
 
+
                   {/* Текстовый контент карточки */}
                   <CardContent sx={{ p: 0, flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
-                    <Typography 
-                      variant="caption" 
-                      sx={{ color: '#888', fontWeight: 500, mb: 0.5 }}
+                    <Typography
+                      variant="caption"
+                      sx={{
+                        color: '#71717A',
+                        fontWeight: 700,
+                        fontSize: '11px',
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.5px',
+                        mb: 0.5
+                      }}
                     >
                       {card.category}
                     </Typography>
-                    
-                    <Typography 
-                      variant="h6" 
-                      component="h3" 
-                      sx={{ fontWeight: 700, color: '#212121', mb: 1.5 }}
+                   
+                    <Typography
+                      variant="h6"
+                      component="h3"
+                      sx={{
+                        fontWeight: 900,
+                        color: '#18181B',
+                        fontSize: '18px',
+                        lineHeight: 1.25,
+                        mb: 1.5
+                      }}
                     >
                       {card.title}
                     </Typography>
-                    
-                    <Typography 
-                      variant="body2" 
-                      sx={{ color: '#555', lineHeight: 1.6, mb: 3, flexGrow: 1 }}
+                   
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        color: '#52525B',
+                        lineHeight: 1.55,
+                        fontSize: '13px',
+                        mb: 3,
+                        flexGrow: 1
+                      }}
                     >
                       {card.description}
                     </Typography>
 
-                    {/* Нижняя строка (Награда / Роль) */}
-                    <Typography 
-                      variant="body2" 
-                      sx={{ 
-                        color: '#212121', 
-                        fontWeight: card.isFooterBold ? 700 : 600,
-                        mt: 'auto' 
-                      }}
-                    >
-                      {card.footerText}
-                    </Typography>
+
+                    {/* Нижняя строка роли */}
+                    <Box sx={{ pt: 1.5, borderTop: '1px solid #E4E4E7' }}>
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          color: '#18181B',
+                          fontWeight: card.isFooterBold ? 800 : 700,
+                          fontSize: '13px'
+                        }}
+                      >
+                        {card.footerText}
+                      </Typography>
+                    </Box>
                   </CardContent>
                 </CardActionArea>
               </Card>
             </Grid>
           ))}
         </Grid>
+
+
+        {/* Нижний черный баннер заявки из Фигмы */}
+        <Box
+          sx={{
+            width: '100%',
+            maxWidth: 1100,
+            background: '#18181B',
+            borderRadius: '20px',
+            p: { xs: 3, md: 3.5 },
+            display: 'flex',
+            flexDirection: { xs: 'column', md: 'row' },
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            gap: 2.5,
+            boxShadow: '0 16px 36px rgba(0,0,0,0.16)',
+          }}
+        >
+          <Box>
+            <Typography sx={{ color: '#FFFFFF', fontSize: '18px', fontWeight: 800, mb: 0.5 }}>
+              Уже знаешь, кем хочешь быть?
+            </Typography>
+            <Typography sx={{ color: '#A1A1AA', fontSize: '13.5px' }}>
+              Подай упрощенную заявку без резюме — мы подберем направление под твой профиль и курс колледжа или вуза.
+            </Typography>
+          </Box>
+          <Button
+            onClick={() => navigate('/students')}
+            sx={{
+              background: '#D7001E',
+              color: '#FFFFFF',
+              px: 3.5,
+              py: 1.3,
+              borderRadius: '10px',
+              fontSize: '14px',
+              fontWeight: 800,
+              textTransform: 'none',
+              flexShrink: 0,
+              boxShadow: '0 4px 14px rgba(215, 0, 30, 0.4)',
+              '&:hover': { background: '#B00018' },
+            }}
+          >
+            Подать заявку
+          </Button>
+        </Box>
+
+
       </Container>
     </Box>
   );
 }
+
