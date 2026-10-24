@@ -9,6 +9,7 @@ import {
   useMediaQuery,
   useTheme,
   SwipeableDrawer,
+  Button,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-router";
@@ -45,12 +46,12 @@ export const Header = () => {
         width: "100%",
         alignItems: "center",
         justifyContent: "space-between",
+        position: "relative",
         pb: { xs: 1, md: 2 },
         margin: "0 auto",
         boxSizing: "border-box",
       }}
     >
-      {/* Логотип */}
       <Typography
         sx={{
           color: colors.redBg,
@@ -67,21 +68,39 @@ export const Header = () => {
         ОЧАКОВО смена
       </Typography>
 
-      {/* Навигация для Десктопа */}
       {!isMobile && (
-        <Stack
-          direction="row"
-          spacing={{ md: 3, lg: 5 }}
-          sx={{
-            backgroundColor: colors.redBg,
-            padding: { md: "14px 32px", lg: "20px 50px" },
-            borderBottomLeftRadius: 10,
-            borderBottomRightRadius: 10,
-            alignItems: "center",
-          }}
-        >
-          {navLinks}
-        </Stack>
+        <>
+          <Stack
+            direction="row"
+            spacing={{ md: 3, lg: 5 }}
+            sx={{
+              position: "absolute",
+              left: "50%",
+              transform: "translateX(-50%)",
+              backgroundColor: colors.redBg,
+              padding: { md: "14px 32px", lg: "20px 50px" },
+              borderBottomLeftRadius: 10,
+              borderBottomRightRadius: 10,
+              alignItems: "center",
+            }}
+          >
+            {navLinks}
+          </Stack>
+
+          <Button
+            sx={{
+              backgroundColor: "#18181b",
+              color: "#fefefe",
+              fontWeight: 600,
+              padding: "10px 20px",
+              borderRadius: "5px",
+              whiteSpace: "nowrap",
+            }}
+            component={Link}
+          >
+            Для HR
+          </Button>
+        </>
       )}
 
       {/* Кнопка "Гамбургер" для Мобильных */}
@@ -112,6 +131,23 @@ export const Header = () => {
         </Box>
 
         {navLinks}
+
+        <Button
+          sx={{
+            backgroundColor: "#18181b",
+            color: "#fefefe",
+            fontWeight: 600,
+            padding: "10px 20px",
+            borderRadius: "5px",
+            mx: 2,
+            mt: 2,
+            mb: 3,
+          }}
+          component={Link}
+          onClick={() => setMobileOpen(false)}
+        >
+          Для HR
+        </Button>
       </SwipeableDrawer>
     </Stack>
   );

@@ -6,6 +6,7 @@ import { Header } from "@/widgets/Header/Header";
 import { Index } from "@/pages/Index/Index";
 import { Conveyor } from "./pages/SimHome/Conveyor";
 import Quiz from "./pages/SimHome/Quiz";
+import { StudentPage } from "@/pages/Students/Students";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
             <Route path="/brew" element={<Brew />} />
             <Route path="/conveyor" element={<Conveyor />} />
             <Route path="/quiz" element={<Quiz />} />
+            <Route path="/students" element={<StudentPage />} />
           </Routes>
         </BrowserRouter>
       </Box>
