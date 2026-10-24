@@ -21,7 +21,7 @@ const departments = [
     icon: LaboratoryIcon,
     description:
       "Контроль качества сырья, разработка рецептур кваса и напитков на современном оборудовании.",
-    path: "/lab",
+    path: "/Lab",
     gridArea: { xs: "1 / 1", md: "1 / 2" },
     offsetX: 0,
     offsetY: 0,
