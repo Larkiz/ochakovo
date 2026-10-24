@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from 'react-router';
+import { useNavigate } from "react-router";
 import {
   Box,
   Container,
@@ -20,7 +20,6 @@ import WorkIcon from "@mui/icons-material/Work";
 import SchoolIcon from "@mui/icons-material/School";
 import PhoneIcon from "@mui/icons-material/Phone";
 import HomeIcon from "@mui/icons-material/Home";
-import { TestQues } from "./TestQues";
 
 // Данные оплачиваемых вакансий
 const paidVacancies = [
@@ -58,33 +57,49 @@ const paidVacancies = [
   },
 ];
 
-// Частые вопросы (FAQ)
+// Вопросы и ответы
 const faqList = [
   {
-    q: "Где находятся офис и общежитие и как добраться?",
-    a: "Офис: г. Москва, ул. Рябиновая, 44. Общежитие: ул. Рябиновая, 36, к. 2 (автобусы № 275, 610 от м. Кунцевская, № 259 от ст. Рабочий поселок, или от м. Озёрная на корпоративном автобусе).",
+    q: "Сколько человек живёт в комнате?",
+    a: "Комнаты в общежитии разные. В зависимости от типа комнаты, в ней проживают от 4 до 6 человек.",
   },
   {
-    q: "Как устроено проживание и сколько это стоит?",
-    a: "Комнаты от 4 до 6 человек. Стоимость для студентов — 3 400 ₽/мес (компания компенсирует 50%). На этажах есть общие кухни (плиты, холодильники, микроволновки). Туалет на этаже, душ на 1 этаже. Режим входа: с 6:00 до 23:00.",
+    q: "Как оборудована кухонная зона?",
+    a: "На этаже - общие холодильники, чайники. В комнатах техники нет.",
   },
   {
-    q: "Как организовано питание?",
-    a: "В столовой завода. Компанией компенсируется 50% стоимости. Наличные не нужны — расчет по электронной карте сотрудника (вычитается из зарплаты). Обед: 11:30–14:30, ужин: 20:30–22:00.",
+    q: "Нужно ли привозить с собой утюг, фен, постельное бельё?",
+    a: "В общежитии есть всё, кроме фена. Его придётся захватить",
   },
   {
-    q: "Выдается ли спецодежда и как проходит медосмотр?",
-    a: "Спецодежда, обувь и медосмотр предоставляются бесплатно за счет компании. Спецодежду можно стирать в беплатной прачечной завода (выдача через 1–2 дня).",
+    q: "Есть ли в общежитии возможность заниматься спортом?",
+    a: "Около общежития есть спортивная площадка, где можно заниматься спортом.",
   },
   {
-    q: "Какие документы нужны для практики?",
-    a: "Договор между ВУЗом/СУЗом и «Очаково», приказ, дневник/отчет по практике и характеристика. Со студентом оформляется срочный трудовой договор по ТК РФ с записью в электронную трудовую книжку.",
+    q: "Можно ли приготовить еду?",
+    a: "Да. Можно пользоваться общими кухнями на каждом этаже. Там есть холодильник, микроволновки, чайники, плиты",
+  },
+  {
+    q: "Есть ли в комнате душевая и туалет?",
+    a: "Туалет на этаже (4-6 кабин).\nДушевая - на первом этаже\nОбщие зоны убирает уборщица, а кухни и комнаты - сами проживающие.",
+  },
+  {
+    q: "Есть ли в общежитии режим?",
+    a: "Да! Вход закрыт с 23:00 до 6:00",
+  },
+  {
+    q: "Кто ещё живёт в общежитии?",
+    a: "В общежитии живут сотрудники Очаково",
+  },
+  {
+    q: "Надо ли платить за проживание?",
+    a: "Да! Для студентов стоимость 3400 за койко-место. Для остальных - 6800",
   },
 ];
 
 export const StudentPage = () => {
+  const navigate = useNavigate();
   const [tab, setTab] = useState("paid");
-const navigate = useNavigate();
 
   return (
     <Box
@@ -173,20 +188,35 @@ const navigate = useNavigate();
         {tab === "paid" && (
           <Grid container spacing={3} sx={{ mb: 8 }}>
             {paidVacancies.map((item, index) => (
-              <Grid size={{ xs: 12, sm: 6 }} key={index}>
+              <Grid
+                key={index}
+                item
+                xs={12}
+                sm={6}
+                size={{ xs: 12, sm: 6 }}
+                sx={{ display: "flex" }}
+              >
                 <Card
                   elevation={0}
                   sx={{
+                    width: "100%",
                     borderRadius: "16px",
                     border: "1px solid #E5E7EB",
-                    height: "100%",
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "space-between",
                     p: 1,
                   }}
                 >
-                  <CardContent>
+                  <CardContent
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      height: "100%",
+                      p: 2,
+                      "&:last-child": { pb: 2 },
+                    }}
+                  >
                     <Typography
                       variant="caption"
                       color="text.secondary"
@@ -194,6 +224,7 @@ const navigate = useNavigate();
                     >
                       {item.title}
                     </Typography>
+
                     <Typography
                       variant="h5"
                       fontWeight={800}
@@ -201,20 +232,30 @@ const navigate = useNavigate();
                     >
                       {item.role}
                     </Typography>
-                    <Chip
-                      label={item.salary}
-                      color="success"
-                      size="small"
-                      sx={{ fontWeight: 800, mb: 2 }}
-                    />
-                    <Typography variant="body2" color="text.secondary">
+
+                    <Box sx={{ mb: 2 }}>
+                      <Chip
+                        label={item.salary}
+                        color="success"
+                        size="small"
+                        sx={{ fontWeight: 800 }}
+                      />
+                    </Box>
+
+                    <Typography
+                      variant="body2"
+                      color="text.secondary"
+                      sx={{ flexGrow: 1, mb: 2 }}
+                    >
                       {item.details}
                     </Typography>
+
                     <Typography
                       variant="caption"
                       display="block"
                       color="text.primary"
                       fontWeight={700}
+                      sx={{ mt: "auto", pt: 1, borderTop: "1px solid #F1F5F9" }}
                     >
                       График: {item.schedule}
                     </Typography>
@@ -252,7 +293,7 @@ const navigate = useNavigate();
                 "Взятие контрольных проб и качество лабораторных анализов",
                 "Разработка макетов выкладки продукции в маркетинге",
               ].map((task, i) => (
-                <Grid size={{ xs: 12, sm: 6 }} key={i}>
+                <Grid item xs={12} sm={6} size={{ xs: 12, sm: 6 }} key={i}>
                   <Stack
                     sx={{ alignItems: "center" }}
                     direction="row"
@@ -274,55 +315,91 @@ const navigate = useNavigate();
           </Paper>
         )}
 
-        {/* Раздел FAQ */}
-        <Box sx={{ mb: 8 }}>
+        {/* ================= РАЗДЕЛ FAQ (СКРУГЛЕННЫЙ, С КРАСНЫМ ОТВЕТОМ И БЕЛЫМ ТЕКСТОМ) ================= */}
+        <Box sx={{ mb: 8, maxWidth: 840, mx: "auto" }}>
           <Typography
             variant="h4"
             fontWeight={900}
             sx={{
               mb: 4,
-              fontSize: { xs: "1.5rem", sm: "2.125rem", textAlign: "center" },
+              fontSize: { xs: "1.5rem", sm: "2.125rem" },
+              textAlign: "center",
             }}
           >
             Часто задаваемые вопросы (FAQ)
           </Typography>
-          {faqList.map((faq, idx) => (
-            <Accordion
-              key={idx}
-              elevation={0}
-              disableGutters
-              sx={{
-                border: "1px solid #E5E7EB",
-                mb: 1.5,
-                borderRadius: "12px !important",
-                "&:before": { display: "none" },
-                overflow: "hidden",
-              }}
-            >
-              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                <Typography fontWeight={700}>{faq.q}</Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <Typography variant="body2" color="text.secondary">
-                  {faq.a}
-                </Typography>
-              </AccordionDetails>
-            </Accordion>
-          ))}
+
+          <Stack spacing={2}>
+            {faqList.map((faq, idx) => (
+              <Accordion
+                key={idx}
+                elevation={0}
+                disableGutters
+                defaultExpanded={idx === 0}
+                sx={{
+                  borderRadius: "16px !important",
+                  overflow: "hidden",
+                  boxShadow: "0 6px 16px rgba(0,0,0,0.06)",
+                  border: "none",
+                  "&:before": { display: "none" },
+                }}
+              >
+                {/* Чёрная плашка вопроса */}
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon sx={{ color: "#FFFFFF" }} />}
+                  sx={{
+                    backgroundColor: "#000000",
+                    color: "#FFFFFF",
+                    px: 3,
+                    py: 1.2,
+                    minHeight: "58px",
+                    "& .MuiAccordionSummary-content": { my: 1 },
+                  }}
+                >
+                  <Typography fontWeight={700} fontSize="15px">
+                    {faq.q}
+                  </Typography>
+                </AccordionSummary>
+
+                {/* Красная плашка ответа как в хедере с белым текстом */}
+                <AccordionDetails
+                  sx={{
+                    backgroundColor: "#D7001E",
+                    color: "#FFFFFF",
+                    px: 3,
+                    py: 2.4,
+                  }}
+                >
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      fontWeight: 500,
+                      fontSize: "14.5px",
+                      lineHeight: 1.6,
+                      color: "#FFFFFF",
+                      whiteSpace: "pre-line",
+                    }}
+                  >
+                    {faq.a}
+                  </Typography>
+                </AccordionDetails>
+              </Accordion>
+            ))}
+          </Stack>
         </Box>
 
-        {/* Контакты и справочник */}
+        {/* ================= КОНТАКТЫ И КНОПКА ПОДАЧИ ЗАЯВКИ ================= */}
         <Paper
           elevation={0}
           sx={{
-            p: { xs: 3, sm: 4 },
+            p: { xs: 3, sm: 4.5 },
             borderRadius: "20px",
-            backgroundColor: "#111827",
+            backgroundColor: "#0B111E",
             color: "#FFF",
           }}
         >
           <Grid container sx={{ alignItems: "center" }} spacing={4}>
-            <Grid size={{ xs: 12, md: 6 }}>
+            <Grid item xs={12} md={7} size={{ xs: 12, md: 7 }}>
               <Typography variant="h5" fontWeight={800} gutterBottom>
                 Остались вопросы? Свяжись с нами!
               </Typography>
@@ -334,9 +411,9 @@ const navigate = useNavigate();
                 <Stack
                   direction="row"
                   sx={{ alignItems: "center" }}
-                  spacing={1}
+                  spacing={1.5}
                 >
-                  <PhoneIcon color="error" />
+                  <PhoneIcon sx={{ color: "#E30613" }} />
                   <Typography variant="body2">
                     Отдел подбора: 8 (800) 100-77-77 (доб. 1155) / +7 (903)
                     591-00-13
@@ -345,33 +422,37 @@ const navigate = useNavigate();
                 <Stack
                   sx={{ alignItems: "center" }}
                   direction="row"
-                  spacing={1}
+                  spacing={1.5}
                 >
-                  <HomeIcon color="error" />
+                  <HomeIcon sx={{ color: "#E30613" }} />
                   <Typography variant="body2">
                     Комендант общежития: 8 (495) 446-42-55
                   </Typography>
                 </Stack>
               </Stack>
             </Grid>
-            <Grid size={{ xs: 12, md: 6 }} sx={{ textAlign: { md: "right" } }}>
+
+            <Grid item xs={12} md={5} size={{ xs: 12, md: 5 }} sx={{ textAlign: { md: "right" } }}>
               <Button
-              onClick={() => navigate(TestQues.path)}
                 variant="contained"
                 size="large"
                 fullWidth
+                onClick={() => navigate("/testques")}
                 sx={{
                   backgroundColor: "#E30613",
                   color: "#FFF",
-                  fontWeight: 800,
+                  fontWeight: 900,
+                  fontSize: "15px",
                   px: 4,
-                  py: 1.5,
+                  py: 1.8,
                   borderRadius: "10px",
                   maxWidth: { md: "fit-content" },
-                  "&:hover": { backgroundColor: "#C0020F" },
+                  textTransform: "uppercase",
+                  letterSpacing: "0.5px",
+                  "&:hover": { backgroundColor: "#B00018" },
                 }}
               >
-                Подать заявку на практику
+                ПОДАТЬ ЗАЯВКУ НА ПРАКТИКУ
               </Button>
             </Grid>
           </Grid>
@@ -380,3 +461,4 @@ const navigate = useNavigate();
     </Box>
   );
 };
+

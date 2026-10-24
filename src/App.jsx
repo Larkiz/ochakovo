@@ -9,6 +9,8 @@ import { StudentPage } from "@/pages/Students/Students";
 import Lab from "./pages/SimHome/Lab";
 import { SimHome } from "./pages/SimHome/SimHome";
 import { TestQues } from "@/pages/Students/TestQues"
+import { HRPanel } from "@/pages/HR/HRPanel";
+
 
 function App() {
   return (
@@ -41,6 +43,7 @@ function App() {
             <Route path="/quiz" element={<Quiz />} />
             <Route path="/students" element={<StudentPage />} />
             <Route path="/simhome" element={<SimHome />} />
+            <Route path="/hr" element={<HRPanel />} />
             <Route path="/testques" element={<TestQues />}/>
           </Routes>
         </BrowserRouter>
@@ -49,4 +52,6 @@ function App() {
   );
 }
 
+
 export default App;
+

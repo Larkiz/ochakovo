@@ -266,9 +266,6 @@ export default function Lab() {
       }}>
         
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 4 }}>
-          <IconButton onClick={handleBack} disabled={!isCreated && !selectedBase} sx={{ color: '#626366', borderRadius: 0, border: '1px solid #e4e4e4', p: 0.5 }}>
-            <ArrowBackIcon fontSize="small" />
-          </IconButton>
           <Typography sx={{ flexGrow: 1, textAlign: 'center', fontWeight: '800', fontSize: '0.85rem', color: '#626366', letterSpacing: 1 }}>
             ИСПЫТАНИЕ 04 / 06
           </Typography>

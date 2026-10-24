@@ -14,10 +14,11 @@ import {
   InputLabel,
   Button,
   Paper,
-  Stack // Используем Stack вместо Grid для предотвращения сжатия
+  Stack
 } from '@mui/material';
 
 export function TestQues() {
+  // 1. Локальный стейт формы
   const [formData, setFormData] = useState({
     fullName: '',
     gender: 'male',
@@ -29,21 +30,72 @@ export function TestQues() {
     readinessStatus: ''
   });
 
+  // 2. Обработчик изменений полей
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  // 3. Отправка JSON в базу данных
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+
+    const payload = {
+      candidateId: 0, 
+      fullName: formData.fullName,
+      gender: formData.gender === 'male' ? 'Мужской' : 'Женский',
+      birthDate: formData.birthDate, 
+      phone: formData.phone,
+      email: formData.email,
+      educationType: formData.educationType,
+      institutionName: formData.institutionName,
+      workReadiness: formData.readinessStatus, 
+      status: "Новый", 
+      candidatevacancies: [] 
+    };
+
+    try {
+      const response = await fetch('https://localhost:7076/api/Candidate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        console.log('Успешно сохранено:', result);
+        alert('Анкета успешно отправлена!');
+        
+        setFormData({
+          fullName: '',
+          gender: 'male',
+          birthDate: '',
+          phone: '',
+          email: '',
+          educationType: '',
+          institutionName: '',
+          readinessStatus: ''
+        });
+      } else {
+        const errorData = await response.text();
+        console.error('Ошибка сервера:', errorData);
+        alert(`Ошибка сервера: ${response.status}`);
+      }
+    } catch (error) {
+      console.error('Сетевая ошибка:', error);
+      alert('Не удалось подключиться к серверу API.');
+    }
   };
 
+  // 4. Отрендеренный интерфейс
   return (
     <Box sx={{ bgcolor: '#fdfdfd', py: 6, display: 'flex', justifyContent: 'center' }}>
       <Container maxWidth="sm">
         
-        {/* Заголовок */}
+        {/* Шапка */}
         <Box sx={{ textAlign: 'center', mb: 4 }}>
           <Typography variant="h4" sx={{ fontWeight: 800, color: '#212121', textTransform: 'uppercase', mb: 1 }}>
             Заполни <span style={{ color: '#E30613' }}>анкету</span>
@@ -53,17 +105,15 @@ export function TestQues() {
           </Typography>
         </Box>
 
-        {/* Форма */}
+        {/* Форма на серой подложке */}
         <Paper 
           elevation={0} 
           component="form" 
           onSubmit={handleSubmit}
           sx={{ p: 4, borderRadius: 4, bgcolor: '#f5f5f5' }}
         >
-          {/* Stack гарантирует, что элементы будут идти строго сверху вниз и не сожмутся */}
           <Stack spacing={3}>
             
-            {/* ФИО */}
             <TextField
               required
               fullWidth
@@ -74,7 +124,6 @@ export function TestQues() {
               sx={{ bgcolor: '#fff', borderRadius: 1 }}
             />
 
-            {/* Пол */}
             <FormControl component="fieldset">
               <FormLabel sx={{ fontWeight: 600, color: '#212121', mb: 0.5 }}>Пол</FormLabel>
               <RadioGroup row name="gender" value={formData.gender} onChange={handleChange}>
@@ -91,7 +140,6 @@ export function TestQues() {
               </RadioGroup>
             </FormControl>
 
-            {/* Дата рождения */}
             <TextField
               required
               fullWidth
@@ -103,7 +151,6 @@ export function TestQues() {
               sx={{ bgcolor: '#fff', borderRadius: 1 }}
             />
 
-            {/* Номер телефона */}
             <TextField
               required
               fullWidth
@@ -115,7 +162,6 @@ export function TestQues() {
               sx={{ bgcolor: '#fff', borderRadius: 1 }}
             />
 
-            {/* Email */}
             <TextField
               required
               fullWidth
@@ -127,7 +173,6 @@ export function TestQues() {
               sx={{ bgcolor: '#fff', borderRadius: 1 }}
             />
 
-            {/* Тип образования */}
             <FormControl fullWidth required sx={{ bgcolor: '#fff', borderRadius: 1 }}>
               <InputLabel id="edu-type-label">Тип образования</InputLabel>
               <Select
@@ -142,7 +187,6 @@ export function TestQues() {
               </Select>
             </FormControl>
 
-            {/* Название учебного заведения */}
             <TextField
               required
               fullWidth
@@ -153,7 +197,6 @@ export function TestQues() {
               sx={{ bgcolor: '#fff', borderRadius: 1 }}
             />
 
-            {/* Готовность выйти на работу */}
             <FormControl fullWidth required sx={{ bgcolor: '#fff', borderRadius: 1 }}>
               <InputLabel id="readiness-label">Готов выйти на работу</InputLabel>
               <Select
@@ -170,7 +213,6 @@ export function TestQues() {
               </Select>
             </FormControl>
 
-            {/* Кнопка отправки формы */}
             <Box sx={{ pt: 1 }}>
               <Button
                 type="submit"
