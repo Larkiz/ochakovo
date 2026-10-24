@@ -27,11 +27,11 @@ export const Header = () => {
   const navLinks = (
     <>
       <LinkButton onClick={() => setMobileOpen(false)}>Главная</LinkButton>
-      <LinkButton to="simulator" onClick={() => setMobileOpen(false)}>
+      <LinkButton to="history" onClick={() => setMobileOpen(false)}>
         История
       </LinkButton>
-      <LinkButton to="recipes" onClick={() => setMobileOpen(false)}>
-        Вакансии
+      <LinkButton to="students" onClick={() => setMobileOpen(false)}>
+        Студенту
       </LinkButton>
     </>
   );
@@ -45,7 +45,6 @@ export const Header = () => {
         width: "100%",
         alignItems: "center",
         justifyContent: "space-between",
-        px: { xs: 2, sm: 3, md: 4 },
         pb: { xs: 1, md: 2 },
         margin: "0 auto",
         boxSizing: "border-box",

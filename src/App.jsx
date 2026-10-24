@@ -20,7 +20,14 @@ function App() {
         backgroundSize: "24px 24px",
       }}
     >
-      <Box sx={{ pl: 4, pr: 4, maxWidth: 1440, margin: "auto" }}>
+      <Box
+        sx={{
+          pl: { xs: 2, md: 4 },
+          pr: { xs: 2, md: 4 },
+          maxWidth: 1440,
+          margin: "auto",
+        }}
+      >
         <BrowserRouter>
           <Header />
           <Routes>

@@ -152,8 +152,7 @@ export function Index() {
               КВАС.
             </Box>
             <br />
-            ТВОЙ КАРЬЕРНЫЙ СТАРТ
-            <br />В ОЧАКОВО
+            ТВОЙ КАРЬЕРНЫЙ СТАРТ В ОЧАКОВО
           </Typography>
 
           <Typography
