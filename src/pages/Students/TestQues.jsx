@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import { QRCodeSVG } from 'qrcode.react';
 import {
   Box,
   Container,
@@ -14,8 +15,14 @@ import {
   InputLabel,
   Button,
   Paper,
-  Stack
+  Stack,
+  IconButton,
+  Tooltip,
+  Snackbar,
+  Alert,
 } from '@mui/material';
+import DownloadIcon from '@mui/icons-material/Download';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
 export function TestQues() {
   const [formData, setFormData] = useState({
@@ -28,6 +35,37 @@ export function TestQues() {
     institutionName: '',
     readinessStatus: ''
   });
+
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const qrRef = useRef(null);
+
+  const currentUrl = typeof window !== 'undefined' ? window.location.href : 'https://ochakovo.ru';
+
+  const handleCopyLink = async () => {
+    try {
+      await navigator.clipboard.writeText(currentUrl);
+      setSnackbarOpen(true);
+    } catch (err) {
+      console.error('Не удалось скопировать ссылку', err);
+    }
+  };
+
+  const handleDownloadQR = () => {
+    const svgElement = qrRef.current?.querySelector('svg');
+    if (!svgElement) return;
+
+    const svgData = new XMLSerializer().serializeToString(svgElement);
+    const svgBlob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' });
+    const svgUrl = URL.createObjectURL(svgBlob);
+    
+    const downloadLink = document.createElement('a');
+    downloadLink.href = svgUrl;
+    downloadLink.download = `ochakovo-anketa-qr.svg`;
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+    URL.revokeObjectURL(svgUrl);
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -87,8 +125,9 @@ export function TestQues() {
     }
   };
 
-  return (
+    return (
     <Box sx={{ bgcolor: '#fdfdfd', py: 6, display: 'flex', justifyContent: 'center' }}>
+      {/* Исправлено: Возвращаем maxWidth="sm", чтобы контейнер жестко стоял по центру */}
       <Container maxWidth="sm">
         
         <Box sx={{ textAlign: 'center', mb: 4 }}>
@@ -104,7 +143,7 @@ export function TestQues() {
           elevation={0} 
           component="form" 
           onSubmit={handleSubmit}
-          sx={{ p: 4, borderRadius: 4, bgcolor: '#f5f5f5' }}
+          sx={{ p: 4, borderRadius: 4, bgcolor: '#f5f5f5', mb: 4 }}
         >
           <Stack spacing={3}>
             
@@ -142,7 +181,7 @@ export function TestQues() {
               type="date"
               value={formData.birthDate}
               onChange={handleChange}
-              slotProps={{ inputLabel: { shrink: true } }} // Исправлено для предотвращения предупреждений React
+              slotProps={{ inputLabel: { shrink: true } }}
               sx={{ bgcolor: '#fff', borderRadius: 1 }}
             />
 
@@ -230,7 +269,91 @@ export function TestQues() {
 
           </Stack>
         </Paper>
+
+        {/* Размещаем QR-код прямо под формой, центрируя контент */}
+        <Paper
+          elevation={0}
+          sx={{
+            p: 3,
+            borderRadius: 4,
+            bgcolor: '#f5f5f5',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            textAlign: 'center',
+            border: '1px dashed #ccc'
+          }}
+        >
+          <Typography variant="subtitle1" sx={{ fontWeight: 700, mb: 1, color: '#212121' }}>
+            Заполняйте со смартфона
+          </Typography>
+          <Typography variant="body2" sx={{ color: '#666', mb: 2, px: 2 }}>
+            Отсканируйте QR-код, чтобы быстро открыть эту анкету на мобильном устройстве.
+          </Typography>
+
+          <Box 
+            ref={qrRef} 
+            sx={{ 
+              p: 2, 
+              bgcolor: '#fff', 
+              borderRadius: 3, 
+              boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.05)',
+              mb: 2,
+              display: 'inline-flex'
+            }}
+          >
+            <QRCodeSVG
+              value={currentUrl}
+              size={160}
+              level="M"
+              bgColor="#ffffff"
+              fgColor="#212121"
+            />
+          </Box>
+
+          <Stack direction="row" spacing={1} sx={{ width: '100%', maxWidth: 300, mt: 1 }}>
+            <Button
+              variant="outlined"
+              size="small"
+              startIcon={<DownloadIcon />}
+              onClick={handleDownloadQR}
+              sx={{ 
+                flexGrow: 1, 
+                borderColor: '#ccc', 
+                color: '#212121',
+                '&:hover': { borderColor: '#212121', bgcolor: 'rgba(0,0,0,0.04)' }
+              }}
+            >
+              Скачать
+            </Button>
+            <Tooltip title="Скопировать ссылку">
+              <IconButton 
+                onClick={handleCopyLink}
+                sx={{ 
+                  border: '1px solid #ccc', 
+                  borderRadius: 2,
+                  color: '#212121',
+                  '&:hover': { borderColor: '#212121' }
+                }}
+              >
+                <ContentCopyIcon fontSize="small" />
+              </IconButton>
+            </Tooltip>
+          </Stack>
+        </Paper>
+
       </Container>
+
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={2500}
+        onClose={() => setSnackbarOpen(false)}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      >
+        <Alert severity="success" variant="filled" sx={{ width: '100%' }}>
+          Ссылка на анкету скопирована!
+        </Alert>
+      </Snackbar>
     </Box>
   );
 }
