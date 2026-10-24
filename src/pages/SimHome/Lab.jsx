@@ -23,6 +23,9 @@ function TasteSelector({
 }) {
   return (
     <Box sx={{ borderRadius: 0 }}>
+      <Typography sx={{ color: '#ED1940', fontSize: '0.75rem', fontWeight: 'bold', letterSpacing: 1, mb: 0.5 }}>
+        СМЕНА 4 • СОЗДАНИЕ ВКУСА
+      </Typography>
       <Typography variant="h4" sx={{ fontWeight: 'bold', mb: 2, fontSize: '1.8rem', color: '#626366' }}>
         Лаборатория вкуса
       </Typography>
@@ -101,7 +104,7 @@ function TasteSelector({
   );
 }
 
-function TasteResultCard({ selectedBase, selectedIngredients, stats }) {
+function TasteResultCard({ selectedBase, selectedIngredients, stats, onRestart }) {
   const [batchNumber, setBatchNumber] = useState(162);
 
   useEffect(() => {
@@ -177,6 +180,27 @@ function TasteResultCard({ selectedBase, selectedIngredients, stats }) {
         {renderStatRow('Пряность', stats.spicy)}
         {renderStatRow('Свежесть', stats.fresh)}
       </Box>
+
+      <Stack spacing={2}>
+
+        {/* Кнопка сброса и перезапуска игры */}
+        <Button 
+          fullWidth 
+          variant="contained" 
+          onClick={onRestart}
+          sx={{ 
+            backgroundColor: '#ED1940', 
+            color: '#fff', 
+            borderRadius: 0, 
+            textTransform: 'none', 
+            fontWeight: 'bold',
+            boxShadow: 'none',
+            '&:hover': { backgroundColor: '#d61236', boxShadow: 'none' }
+          }}
+        >
+          Новый рецепт
+        </Button>
+      </Stack>
     </Box>
   );
 }
@@ -249,6 +273,18 @@ export default function Lab() {
         boxShadow: '0 4px 20px rgba(0,0,0,0.05)',
         border: '1px solid #e4e4e4'
       }}>
+        
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
+          <IconButton onClick={handleBack} disabled={!isCreated && !selectedBase} sx={{ color: '#626366', borderRadius: 0 }}>
+            <ArrowBackIcon />
+          </IconButton>
+          <Typography sx={{ flexGrow: 1, textAlign: 'center', fontWeight: 'bold', fontSize: '0.9rem', color: '#626366' }}>
+            СМЕНА 4 ИЗ 6
+          </Typography>
+          <Box sx={{ backgroundColor: '#f0f0f0', px: 1.5, py: 0.5, borderRadius: 0, fontWeight: 'bold', color: '#ED1940', fontSize: '0.9rem' }}>
+            155
+          </Box>
+        </Box>
 
         {!isCreated ? (
           <TasteSelector 
@@ -264,6 +300,7 @@ export default function Lab() {
             selectedBase={selectedBase}
             selectedIngredients={selectedIngredients}
             stats={calculateStats()}
+            onRestart={handleBack}
           />
         )}
 
