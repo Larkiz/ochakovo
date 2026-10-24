@@ -40,7 +40,7 @@ export function TestQues() {
     const payload = {
       candidateId: 0, 
       fullName: formData.fullName,
-      gender: formData.gender === 'male' ? 'Мужской' : 'Женский',
+      gender: formData.gender === 'male' ? 'м' : 'ж',
       birthDate: formData.birthDate, 
       phone: formData.phone,
       email: formData.email,
