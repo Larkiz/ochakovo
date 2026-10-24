@@ -177,7 +177,7 @@ export function Index() {
             </Button>
           ) : (
             <Button
-              onClick={() => navigate('/quiz')}
+              onClick={() => navigate('/')}
               sx={{
                 background: '#09090B',
                 color: '#FFFFFF',
