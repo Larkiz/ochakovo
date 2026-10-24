@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from 'react-router';
 import {
   Box,
   Container,
@@ -19,6 +20,7 @@ import WorkIcon from "@mui/icons-material/Work";
 import SchoolIcon from "@mui/icons-material/School";
 import PhoneIcon from "@mui/icons-material/Phone";
 import HomeIcon from "@mui/icons-material/Home";
+import { TestQues } from "./TestQues";
 
 // Данные оплачиваемых вакансий
 const paidVacancies = [
@@ -82,6 +84,7 @@ const faqList = [
 
 export const StudentPage = () => {
   const [tab, setTab] = useState("paid");
+const navigate = useNavigate();
 
   return (
     <Box
@@ -353,6 +356,7 @@ export const StudentPage = () => {
             </Grid>
             <Grid size={{ xs: 12, md: 6 }} sx={{ textAlign: { md: "right" } }}>
               <Button
+              onClick={() => navigate(TestQues.path)}
                 variant="contained"
                 size="large"
                 fullWidth
