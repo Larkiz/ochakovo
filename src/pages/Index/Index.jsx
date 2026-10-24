@@ -408,20 +408,27 @@ export function Index() {
           >
             <Box>
               <Box
-                sx={{
-                  width: 48,
-                  height: 48,
-                  borderRadius: "14px",
-                  background: "#FEF9C3",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontSize: "24px",
-                  mb: 2,
-                }}
-              >
-                🧪
-              </Box>
+  sx={{
+    width: 96,
+    height: 96,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    mb: 2,
+    overflow: "hidden", 
+  }}
+>
+  <Box
+    component="img"
+    src="../public/stikerhappy.png"
+    alt="Иконка"
+    sx={{
+      maxWidth: "100%",  // Картинка не сожмется и не вылезет за границы блока
+      maxHeight: "100%", // Центрирование сработает за счет флексов родителя
+      objectFit: "contain" // Сохраняет пропорции и вписывает в размеры
+    }}
+  />
+</Box>
               <Typography
                 sx={{
                   fontSize: "19px",
@@ -499,20 +506,27 @@ export function Index() {
           >
             <Box>
               <Box
-                sx={{
-                  width: 48,
-                  height: 48,
-                  borderRadius: "14px",
-                  background: "#F3E8FF",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontSize: "24px",
-                  mb: 2,
-                }}
-              >
-                ⚙️
-              </Box>
+  sx={{
+    width: 96,
+    height: 96,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    mb: 2,
+    overflow: "hidden", 
+  }}
+>
+  <Box
+    component="img"
+    src="../public/lab.png"
+    alt="Иконка"
+    sx={{
+      maxWidth: "100%",  // Картинка не сожмется и не вылезет за границы блока
+      maxHeight: "100%", // Центрирование сработает за счет флексов родителя
+      objectFit: "contain" // Сохраняет пропорции и вписывает в размеры
+    }}
+  />
+</Box>
               <Typography
                 sx={{
                   fontSize: "19px",
@@ -591,20 +605,27 @@ export function Index() {
           >
             <Box>
               <Box
-                sx={{
-                  width: 48,
-                  height: 48,
-                  borderRadius: "14px",
-                  background: "#E0F2FE",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontSize: "24px",
-                  mb: 2,
-                }}
-              >
-                🏆
-              </Box>
+  sx={{
+    width: 96,
+    height: 96,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    mb: 2,
+    overflow: "hidden", 
+  }}
+>
+  <Box
+    component="img"
+    src="../public/hamster.png"
+    alt="Иконка"
+    sx={{
+      maxWidth: "100%",  // Картинка не сожмется и не вылезет за границы блока
+      maxHeight: "100%", // Центрирование сработает за счет флексов родителя
+      objectFit: "contain" // Сохраняет пропорции и вписывает в размеры
+    }}
+  />
+</Box>
               <Typography
                 sx={{
                   fontSize: "11px",

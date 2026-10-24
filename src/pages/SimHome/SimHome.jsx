@@ -21,7 +21,7 @@ const cardsData = [
     footerText: 'Роль: Лаборант',
     isFooterBold: true,
     path: '/Lab', // Роут на конструктор напитка из App.jsx
-    image: '/image (1) 3.png', // Лаборатория с танками
+    image: '../public/lablast.png', // Лаборатория с танками
   },
   {
     id: 'conveyor',
@@ -31,7 +31,7 @@ const cardsData = [
     footerText: 'Роль: Инженер-наладчик',
     isFooterBold: false,
     path: '/conveyor', // Роут на сортировку бутылок
-    image: '/image (1) 1.png', // Цех с трубами
+    image: '../public/jurnost.png', // Цех с трубами
   },
   {
     id: 'brew',
@@ -41,7 +41,7 @@ const cardsData = [
     footerText: 'Роль: Химик-технолог',
     isFooterBold: false,
     path: '/brew', // Роут на варку кваса с температурой
-    image: '/image (1) 2.png', // Технологический корпус Очаково
+    image: '../public/lab2.png', // Технологический корпус Очаково
   }
 ];
 
