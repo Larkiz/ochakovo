@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router";
 import {
   Box,
   Container,
@@ -53,6 +54,7 @@ const PRODUCTS = [
 ];
 
 export function Conveyor() {
+  const navigate = useNavigate();
   const [gameState, setGameState] = useState("menu");
   const [score, setScore] = useState(0);
   const [bottles, setBottles] = useState([]);
@@ -689,6 +691,22 @@ export function Conveyor() {
                 }}
               >
                 Повторить смену
+              </Button>
+              <Button
+                variant="contained"
+                startIcon={<Refresh />}
+                onClick={() => navigate("/testques")}
+                sx={{
+                  mt: 1,
+                  bgcolor: OCHAKOVO_THEME.primary,
+                  "&:hover": { bgcolor: "#660000" },
+                  px: 4,
+                  py: 1.2,
+                  fontWeight: "bold",
+                  borderRadius: 0,
+                }}
+              >
+                К Анкете
               </Button>
             </Box>
           )}

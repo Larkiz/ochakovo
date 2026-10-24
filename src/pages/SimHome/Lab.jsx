@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from "react-router";
 import { 
   Box, 
   Typography, 
@@ -109,7 +110,7 @@ function TasteSelector({
 
 function TasteResultCard({ selectedBase, selectedIngredients, stats, onRestart }) {
   const [batchNumber, setBatchNumber] = useState(162);
-
+  const navigate = useNavigate();
   useEffect(() => {
     setBatchNumber(Math.floor(Math.random() * 900) + 100);
   }, []);
@@ -190,6 +191,24 @@ function TasteResultCard({ selectedBase, selectedIngredients, stats, onRestart }
           }}
         >
           Новый эксперимент
+        </Button>
+
+        <Button 
+          fullWidth 
+          variant="contained" 
+          onClick={() => navigate("/testques")}
+          sx={{ 
+            backgroundColor: '#ED1940', 
+            color: '#fff', 
+            borderRadius: 0, 
+            textTransform: 'uppercase', 
+            fontWeight: '800',
+            boxShadow: 'none',
+            py: 1.5,
+            '&:hover': { backgroundColor: '#d61236', boxShadow: 'none' }
+          }}
+        >
+          К Анкете
         </Button>
       </Stack>
     </Box>

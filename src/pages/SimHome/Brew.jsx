@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router";
 import {
   Box,
   Typography,
@@ -70,7 +71,7 @@ const interpolateColor = (color1, color2, factor) => {
 export function Brew() {
   const TOTAL_TIME = 15;
   const REQUIRED_SCORE = 25;
-
+  const navigate = useNavigate();
   const [temperature, setTemperature] = useState(20);
   const [timeLeft, setTimeLeft] = useState(TOTAL_TIME);
   const [score, setScore] = useState(0);
@@ -265,6 +266,21 @@ export function Brew() {
                 >
                   Играть снова
                 </Button>
+                <Button
+                  variant="contained"
+                  onClick={() => navigate("/testques")}
+                  sx={{
+                    borderRadius: 0,
+                    px: 5,
+                    py: 2,
+                    fontSize: "1rem",
+                    fontWeight: "bold",
+                    bgcolor: "#000",
+                    "&:hover": { bgcolor: "#222" },
+                  }}
+                >
+                  К Анкете
+                </Button>
               </Box>
             )}
 
@@ -291,14 +307,29 @@ export function Brew() {
                 <Button
                   variant="text"
                   color="error"
-                  onClick={startFullGame}
+                  onClick={() => navigate("/testques")}
                   sx={{
                     borderRadius: 0,
                     fontSize: "0.9rem",
                     fontWeight: "bold",
                   }}
                 >
-                  Сбросить прогресс и начать заново
+                  Перейти к Анкете
+                </Button>
+                <Button
+                  variant="contained"
+                  onClick={startFullGame}
+                  sx={{
+                    borderRadius: 0,
+                    px: 5,
+                    py: 2,
+                    fontSize: "1rem",
+                    fontWeight: "bold",
+                    bgcolor: "#000",
+                    "&:hover": { bgcolor: "#222" },
+                  }}
+                >
+                  Играть снова
                 </Button>
               </Box>
             )}
