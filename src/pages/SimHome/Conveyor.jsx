@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   Box,
   Container,
@@ -229,7 +229,7 @@ export function Conveyor() {
   };
 
   // ФИКСАЦИЯ СБРОСА
-  const handlePointerUp = (e) => {
+  const handlePointerUp = () => {
     if (!draggingInfo.current.id) return;
 
     const activeId = draggingInfo.current.id;
