@@ -424,24 +424,13 @@ export function Index() {
               </Box>
               <Typography
                 sx={{
-                  fontSize: "11px",
-                  fontWeight: 800,
-                  color: "#9CA3AF",
-                  letterSpacing: "0.5px",
-                  mb: 0.8,
-                }}
-              >
-                ЛАБОРАТОРИЯ & R&D
-              </Typography>
-              <Typography
-                sx={{
                   fontSize: "19px",
                   fontWeight: 900,
                   color: "#111827",
                   mb: 1.2,
                 }}
               >
-                Варка Кваса
+                Заполни анкету сотрудника
               </Typography>
               <Typography
                 sx={{
@@ -451,8 +440,7 @@ export function Index() {
                   mb: 3,
                 }}
               >
-                Скомпонуй идеальные натуральные ингредиенты, выдержи
-                температурный режим и создай рецепт кваса.
+                Заполни свою анкету и присоединяйся к работе с Очаково
               </Typography>
             </Box>
 
@@ -469,12 +457,12 @@ export function Index() {
                 <Typography
                   sx={{ fontSize: "12px", fontWeight: 700, color: "#374151" }}
                 >
-                  🍧 Роль: Химик-технолог
+                  Запишись на свою первую смену!
                 </Typography>
               </Box>
               <Button
                 fullWidth
-                onClick={() => navigate("/brew")}
+                onClick={() => navigate("/testques")}
                 sx={{
                   background: "#09090B",
                   color: "#FFF",
@@ -486,7 +474,7 @@ export function Index() {
                   "&:hover": { background: "#27272A" },
                 }}
               >
-                Запустить симулятор
+                К Анкете
               </Button>
             </Box>
           </Card>
@@ -527,24 +515,13 @@ export function Index() {
               </Box>
               <Typography
                 sx={{
-                  fontSize: "11px",
-                  fontWeight: 800,
-                  color: "#9CA3AF",
-                  letterSpacing: "0.5px",
-                  mb: 0.8,
-                }}
-              >
-                ИНЖЕНЕРИЯ & АСУ ТП
-              </Typography>
-              <Typography
-                sx={{
                   fontSize: "19px",
                   fontWeight: 900,
                   color: "#111827",
                   mb: 1.2,
                 }}
               >
-                Управление конвейером
+                Симуляторы производства
               </Typography>
               <Typography
                 sx={{
@@ -555,7 +532,7 @@ export function Index() {
                 }}
               >
                 Настрой скорость линии розлива, откалибруй датчики и устрани
-                сбои в работе роботов-упаковщиков.
+                сбои в работе. Создай новый вкус для напитков.
               </Typography>
             </Box>
 
@@ -572,12 +549,12 @@ export function Index() {
                 <Typography
                   sx={{ fontSize: "12px", fontWeight: 700, color: "#374151" }}
                 >
-                  ⚡ Роль: Инженер-наладчик
+                  Попробуй себя в профессии
                 </Typography>
               </Box>
               <Button
                 fullWidth
-                onClick={() => navigate("/conveyor")}
+                onClick={() => navigate("/simhome")}
                 sx={{
                   background: "#09090B",
                   color: "#FFF",
@@ -589,7 +566,7 @@ export function Index() {
                   "&:hover": { background: "#27272A" },
                 }}
               >
-                Управлять линией
+                К Симулятору
               </Button>
             </Box>
           </Card>

@@ -7,6 +7,8 @@ import { Conveyor } from "./pages/SimHome/Conveyor";
 import Quiz from "./pages/SimHome/Quiz";
 import { StudentPage } from "@/pages/Students/Students";
 import Lab from "./pages/SimHome/Lab";
+import { SimHome } from "./pages/SimHome/SimHome";
+import { TestQues } from "@/pages/Students/TestQues"
 
 function App() {
   return (
@@ -38,6 +40,8 @@ function App() {
             <Route path="/conveyor" element={<Conveyor />} />
             <Route path="/quiz" element={<Quiz />} />
             <Route path="/students" element={<StudentPage />} />
+            <Route path="/simhome" element={<SimHome />} />
+            <Route path="/testques" element={<TestQues />}/>
           </Routes>
         </BrowserRouter>
       </Box>

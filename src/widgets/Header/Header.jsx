@@ -28,8 +28,8 @@ export const Header = () => {
   const navLinks = (
     <>
       <LinkButton onClick={() => setMobileOpen(false)}>Главная</LinkButton>
-      <LinkButton to="history" onClick={() => setMobileOpen(false)}>
-        История
+      <LinkButton to="simhome" onClick={() => setMobileOpen(false)}>
+        Симуляторы
       </LinkButton>
       <LinkButton to="students" onClick={() => setMobileOpen(false)}>
         Студенту
