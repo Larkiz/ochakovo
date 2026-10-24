@@ -5,7 +5,6 @@ import {
   Typography,
   Button,
   Card,
-  Stack,
   Chip,
   GlobalStyles,
 } from '@mui/material';
