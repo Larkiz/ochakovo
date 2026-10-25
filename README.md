@@ -7,3 +7,5 @@
 Figma: https://www.figma.com/design/H75fHgMJ6Gbm9hqRNO4fMJ/Untitled?node-id=879-2
 
 БД: https://github.com/Feld546/Backend
+
+Ссылка на веб-приложение: http://ochakovo.duckdns.org/
