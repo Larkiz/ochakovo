@@ -137,7 +137,7 @@ export function TestQues() {
     console.log('Отправка на бэкенд:', payload);
 
     try {
-      await fetch('/api/Candidate', {
+      await fetch('https://localhost:7076/api/Candidate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)

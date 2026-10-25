@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import {
@@ -6,14 +7,11 @@ import {
   Button,
   Card,
   Chip,
-  Zoom,
-  Tooltip,
 } from "@mui/material";
 import { BottlingShopIcon } from "@/pages/Index/ui/BottlingShopIcon";
 import { TechWorkshopIcon } from "@/pages/Index/ui/TechWorkshopIcon";
 import { LaboratoryIcon } from "@/pages/Index/ui/LaboratoryIcon";
-import { Link } from "react-router";
-import { colors } from "@/shared/colors";
+
 const departments = [
   {
     id: "lab",
@@ -49,40 +47,16 @@ const departments = [
     offsetY: 20,
   },
 ];
+
 const scrollTo = (id) => {
   const el = document.getElementById(id);
   if (el) {
     el.scrollIntoView({ behavior: "smooth" });
   }
 };
-const roles = [
-  {
-    title: "МАШИНИСТ ОБОРУДОВАНИЯ",
-    salary: "от 70.000 ₽",
-    dept: "Цех розлива",
-    desc: "Управление автоматическими линиями розлива KHS и Sidel. Контроль параметров выдува бутылок, укупорки и этикетировки.",
-    icon: "⚙️",
-  },
-  {
-    title: "ОПЕРАТОР ВАРОЧНОГО ЦЕХА",
-    salary: "от 70.000 ₽",
-    dept: "Цех варки сусла",
-    desc: "Ведение технологического процесса варки квасного сусла и контроль непрерывного естественного брожения в танках.",
-    icon: "🏭",
-  },
-  {
-    title: "ЛАБОРАНТ КОНТРОЛЯ КАЧЕСТВА",
-    salary: "от 60.000 ₽",
-    dept: "R&D Лаборатория",
-    desc: "Входной контроль натурального зернового сырья и физико-химический экспресс-анализ готовой продукции по ГОСТ.",
-    icon: "🔬",
-  },
-];
+
 export function Index() {
   const navigate = useNavigate();
-  const [selectedRole, setSelectedRole] = useState(0);
-
-  const [hoveredNode, setHoveredNode] = useState(null);
 
   return (
     <Box
@@ -95,7 +69,7 @@ export function Index() {
         fontFamily: '"Montserrat", "Roboto", "Helvetica", sans-serif',
       }}
     >
-      {/* ================= 2. HERO + 3 ЗДАНИЯ ТРЕУГОЛЬНИКОМ ================= */}
+      {/* ================= 2. HERO ================= */}
       <Box
         sx={{
           display: "flex",
@@ -106,8 +80,7 @@ export function Index() {
           mb: { xs: 8, md: 12 },
         }}
       >
-        {/* Текстовая колонка слева */}
-        <Box sx={{ maxWidth: { xs: "100%", lg: 580 } }}>
+        <Box sx={{ maxWidth: { xs: "100%", lg: 680 } }}>
           <Box
             sx={{
               display: "inline-flex",
@@ -161,7 +134,7 @@ export function Index() {
               color: "#3F3F46",
               lineHeight: 1.6,
               mb: 4,
-              maxWidth: 520,
+              maxWidth: 540,
             }}
           >
             Узнай, какое{" "}
@@ -203,128 +176,6 @@ export function Index() {
           >
             Присоединиться к команде
           </Button>
-        </Box>
-
-        {/* 3 ЗДАНИЯ ТРЕУГОЛЬНИКОМ */}
-        <Box
-          sx={{
-            position: "relative",
-            width: { xs: 320, md: 380 },
-            height: { xs: 420, md: 480 },
-            flexShrink: 0,
-          }}
-        >
-          {departments.map((dept, idx) => {
-            const IconComponent = dept.icon;
-            const isHovered = hoveredNode === dept.id;
-
-            // Треугольное расположение:
-            // idx=0 — вершина (сверху по центру)
-            // idx=1 — нижний левый
-            // idx=2 — нижний правый
-            const positions = [
-              { top: "0%", left: "50%", transform: "translateX(-50%)" },
-              { top: "52%", left: "5%", transform: "none" },
-              { top: "52%", right: "5%", transform: "none" },
-            ];
-            const pos = positions[idx];
-
-            return (
-              <Box
-                key={dept.id}
-                sx={{
-                  position: "absolute",
-                  ...pos,
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  cursor: "pointer",
-                  zIndex: isHovered ? 10 : 1,
-                  transition: "z-index 0.2s ease",
-                }}
-                onMouseEnter={() => setHoveredNode(dept.id)}
-                onMouseLeave={() => setHoveredNode(null)}
-              >
-                <Tooltip
-                  title={
-                    <Box sx={{ p: 1 }}>
-                      <Typography
-                        variant="subtitle2"
-                        sx={{ fontWeight: 800, mb: 0.5 }}
-                      >
-                        {dept.title}
-                      </Typography>
-                      <Typography
-                        variant="body2"
-                        sx={{ fontSize: "0.775rem", opacity: 0.9 }}
-                      >
-                        {dept.description}
-                      </Typography>
-                      <Button
-                        sx={{
-                          fontSize: 11,
-                          color: "#fff",
-                          backgroundColor: colors.redBg,
-                          mt: 1,
-                        }}
-                        component={Link}
-                        to={dept.path}
-                        nativeButton={false}
-                      >
-                        Хочу попробовать!
-                      </Button>
-                    </Box>
-                  }
-                  arrow
-                  placement="top"
-                  slots={{ transition: Zoom }}
-                  open={isHovered}
-                  slotProps={{
-                    tooltip: {
-                      sx: {
-                        bgcolor: "#1E293B",
-                        color: "#FFFFFF",
-                        p: 1.5,
-                        maxWidth: 220,
-                        borderRadius: 2,
-                        boxShadow: "0 10px 25px rgba(0,0,0,0.2)",
-                      },
-                    },
-                    arrow: {
-                      sx: {
-                        color: "#1E293B",
-                      },
-                    },
-                  }}
-                >
-                  <Box
-                    sx={{
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
-                    }}
-                  >
-                    <IconComponent isHovered={isHovered} />
-                    <Typography
-                      variant="body2"
-                      sx={{
-                        mt: 1,
-                        fontWeight: 800,
-                        color: isHovered ? "#E30613" : "#111111",
-                        textAlign: "center",
-                        fontSize: "0.875rem",
-                        transition: "color 0.2s ease",
-                        whiteSpace: "pre-line",
-                        lineHeight: 1.2,
-                      }}
-                    >
-                      {dept.title}
-                    </Typography>
-                  </Box>
-                </Tooltip>
-              </Box>
-            );
-          })}
         </Box>
       </Box>
 
@@ -408,27 +259,27 @@ export function Index() {
           >
             <Box>
               <Box
-  sx={{
-    width: 96,
-    height: 96,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    mb: 2,
-    overflow: "hidden", 
-  }}
->
-  <Box
-    component="img"
-    src="../public/stikerhappy.png"
-    alt="Иконка"
-    sx={{
-      maxWidth: "100%",  // Картинка не сожмется и не вылезет за границы блока
-      maxHeight: "100%", // Центрирование сработает за счет флексов родителя
-      objectFit: "contain" // Сохраняет пропорции и вписывает в размеры
-    }}
-  />
-</Box>
+                sx={{
+                  width: 96,
+                  height: 96,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  mb: 2,
+                  overflow: "hidden",
+                }}
+              >
+                <Box
+                  component="img"
+                  src="../public/stikerhappy.png"
+                  alt="Иконка"
+                  sx={{
+                    maxWidth: "100%",
+                    maxHeight: "100%",
+                    objectFit: "contain",
+                  }}
+                />
+              </Box>
               <Typography
                 sx={{
                   fontSize: "19px",
@@ -506,27 +357,27 @@ export function Index() {
           >
             <Box>
               <Box
-  sx={{
-    width: 96,
-    height: 96,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    mb: 2,
-    overflow: "hidden", 
-  }}
->
-  <Box
-    component="img"
-    src="../public/lab.png"
-    alt="Иконка"
-    sx={{
-      maxWidth: "100%",  // Картинка не сожмется и не вылезет за границы блока
-      maxHeight: "100%", // Центрирование сработает за счет флексов родителя
-      objectFit: "contain" // Сохраняет пропорции и вписывает в размеры
-    }}
-  />
-</Box>
+                sx={{
+                  width: 96,
+                  height: 96,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  mb: 2,
+                  overflow: "hidden",
+                }}
+              >
+                <Box
+                  component="img"
+                  src="../public/lab.png"
+                  alt="Иконка"
+                  sx={{
+                    maxWidth: "100%",
+                    maxHeight: "100%",
+                    objectFit: "contain",
+                  }}
+                />
+              </Box>
               <Typography
                 sx={{
                   fontSize: "19px",
@@ -605,27 +456,27 @@ export function Index() {
           >
             <Box>
               <Box
-  sx={{
-    width: 96,
-    height: 96,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    mb: 2,
-    overflow: "hidden", 
-  }}
->
-  <Box
-    component="img"
-    src="../public/hamster.png"
-    alt="Иконка"
-    sx={{
-      maxWidth: "100%",  // Картинка не сожмется и не вылезет за границы блока
-      maxHeight: "100%", // Центрирование сработает за счет флексов родителя
-      objectFit: "contain" // Сохраняет пропорции и вписывает в размеры
-    }}
-  />
-</Box>
+                sx={{
+                  width: 96,
+                  height: 96,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  mb: 2,
+                  overflow: "hidden",
+                }}
+              >
+                <Box
+                  component="img"
+                  src="../public/hamster.png"
+                  alt="Иконка"
+                  sx={{
+                    maxWidth: "100%",
+                    maxHeight: "100%",
+                    objectFit: "contain",
+                  }}
+                />
+              </Box>
               <Typography
                 sx={{
                   fontSize: "11px",
@@ -726,7 +577,7 @@ export function Index() {
             </Typography>
           </Box>
           <Button
-            onClick={() => scrollTo("roles")}
+            onClick={() => scrollTo("game-center")}
             sx={{
               background: "#D7001E",
               color: "#FFFFFF",
@@ -850,7 +701,7 @@ export function Index() {
               sx={{ fontSize: "13px", color: "#475569", fontWeight: 600 }}
             >
               Комфортное жильё на Рябиновой за 3 400 ₽/мес в пешей доступности
-              от проходной[cite: 3].
+              от проходной.
             </Typography>
           </Box>
 
@@ -896,124 +747,6 @@ export function Index() {
               }}
             />
           </Box>
-        </Box>
-      </Box>
-
-      {/* ================= 5. ВЫБЕРИ СВОЮ РОЛЬ ================= */}
-      <Box id="roles" sx={{ mb: 6 }}>
-        <Typography
-          sx={{
-            fontSize: { xs: "22px", md: "30px" },
-            fontWeight: 900,
-            mb: 3.5,
-            letterSpacing: "-0.5px",
-          }}
-        >
-          Выбери свою роль
-        </Typography>
-
-        <Box
-          sx={{
-            display: "grid",
-            gridTemplateColumns: { xs: "1fr", md: "repeat(3, 1fr)" },
-            gap: 3,
-          }}
-        >
-          {roles.map((role, idx) => {
-            const isSelected = selectedRole === idx;
-            return (
-              <Box
-                key={idx}
-                onClick={() => setSelectedRole(idx)}
-                sx={{
-                  background: "#FFFFFF",
-                  borderRadius: "20px",
-                  p: 3.5,
-                  cursor: "pointer",
-                  border: isSelected
-                    ? "2px solid #E30613"
-                    : "1.5px solid #E5E7EB",
-                  boxShadow: isSelected
-                    ? "0 10px 25px rgba(227, 6, 19, 0.12)"
-                    : "none",
-                  transition: "all 0.25s ease",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                  minHeight: 220,
-                  position: "relative",
-                  overflow: "hidden",
-                  "&:hover": {
-                    borderColor: "#E30613",
-                    transform: "translateY(-4px)",
-                  },
-                }}
-              >
-                <Box>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "flex-start",
-                      mb: 2,
-                    }}
-                  >
-                    <Box sx={{ fontSize: "28px" }}>{role.icon}</Box>
-                    <Chip
-                      label={role.salary}
-                      sx={{
-                        background: "#FEE2E2",
-                        color: "#DC2626",
-                        fontWeight: 900,
-                        fontSize: "13px",
-                      }}
-                    />
-                  </Box>
-                  <Typography
-                    sx={{
-                      fontSize: "17px",
-                      fontWeight: 900,
-                      color: "#0F172A",
-                      mb: 1,
-                      lineHeight: 1.25,
-                    }}
-                  >
-                    {role.title}
-                  </Typography>
-                  <Typography
-                    sx={{
-                      fontSize: "13px",
-                      color: "#64748B",
-                      lineHeight: 1.5,
-                      mb: 3,
-                    }}
-                  >
-                    {role.desc}
-                  </Typography>
-                </Box>
-
-                <Button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    alert(
-                      `Отклик на направление: ${role.title}. Скоро свяжемся!`,
-                    );
-                  }}
-                  sx={{
-                    color: "#E30613",
-                    fontWeight: 900,
-                    fontSize: "13px",
-                    p: 0,
-                    justifyContent: "flex-start",
-                    letterSpacing: "0.5px",
-                    "&:hover": { background: "transparent", color: "#991B1B" },
-                  }}
-                >
-                  ПОДРОБНЕЕ —›
-                </Button>
-              </Box>
-            );
-          })}
         </Box>
       </Box>
     </Box>
