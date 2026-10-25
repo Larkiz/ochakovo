@@ -148,7 +148,7 @@ export function HRPanel() {
                 "&:hover": { background: "#B00018" },
               }}
             >
-              Экспорт в Excel / 1C
+              Экспорт в Excel
             </Button>
           </Stack>
         </Box>

@@ -546,55 +546,6 @@ export function Index() {
             </Box>
           </Card>
         </Box>
-
-        {/* Плашка быстрой заявки */}
-        <Box
-          sx={{
-            background: "#18181B",
-            borderRadius: "16px",
-            p: { xs: 2.5, md: 3.5 },
-            display: "flex",
-            flexDirection: { xs: "column", md: "row" },
-            justifyContent: "space-between",
-            alignItems: "center",
-            gap: 2.5,
-          }}
-        >
-          <Box>
-            <Typography
-              sx={{
-                color: "#FFFFFF",
-                fontSize: "16px",
-                fontWeight: 800,
-                mb: 0.5,
-              }}
-            >
-              Уже знаешь, в чем ты силен?
-            </Typography>
-            <Typography sx={{ color: "#9CA3AF", fontSize: "13.5px" }}>
-              Подай упрощенную заявку без резюме — мы подберем направление под
-              твой профиль и курс колледжа или вуза.
-            </Typography>
-          </Box>
-          <Button
-            onClick={() => scrollTo("game-center")}
-            sx={{
-              background: "#D7001E",
-              color: "#FFFFFF",
-              px: 3.5,
-              py: 1.3,
-              borderRadius: "10px",
-              fontSize: "14px",
-              fontWeight: 800,
-              textTransform: "none",
-              flexShrink: 0,
-              boxShadow: "0 4px 14px rgba(215, 0, 30, 0.4)",
-              "&:hover": { background: "#B00018" },
-            }}
-          >
-            Подать заявку в 1 клик 🚀
-          </Button>
-        </Box>
       </Box>
 
       {/* ================= 4. ЧТО ТЫ ПОЛУЧИШЬ РАБОТАЯ У НАС ================= */}
