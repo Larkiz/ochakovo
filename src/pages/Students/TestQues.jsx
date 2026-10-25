@@ -123,7 +123,7 @@ export function TestQues() {
     const payload = {
       candidateId: 0,
       fullName: formData.fullName,
-      gender: formData.gender === 'male' ? 'Мужской' : 'Женский',
+      gender: formData.gender === 'male' ? 'м' : 'ж',
       birthDate: formData.birthDate || '2006-01-01',
       phone: formData.phone,
       email: formData.email,
