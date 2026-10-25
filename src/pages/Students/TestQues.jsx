@@ -240,20 +240,20 @@ export function TestQues() {
             </FormControl>
 
             {/* Дата рождения */}
-            <TextField
-              required
-              fullWidth
-              label="Дата рождения"
-              name="birthDate"
-              type={isDateActive ? 'date' : 'text'}
-              onFocus={() => setDateFocused(true)}
-              onBlur={() => setDateFocused(false)}
-              value={formData.birthDate}
-              onChange={handleChange}
-              InputLabelProps={{ shrink: isDateActive }}
-              slotProps={{ inputLabel: { shrink: isDateActive } }}
-              sx={{ bgcolor: '#fff', borderRadius: 1 }}
-            />
+<Box>
+  <Typography sx={{ fontWeight: 600, color: '#212121', mb: 0.8, fontSize: '14px' }}>
+    Дата рождения *
+  </Typography>
+  <TextField
+    required
+    fullWidth
+    name="birthDate"
+    type="date"
+    value={formData.birthDate}
+    onChange={handleChange}
+    sx={{ bgcolor: '#fff', borderRadius: 1 }}
+  />
+</Box>
 
             {/* Номер телефона */}
             <TextField
